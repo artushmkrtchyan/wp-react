@@ -58079,12 +58079,26 @@ var Category = function (_Component) {
       },
       data: []
     };
+
+    _this.getCategory = _this.getCategory.bind(_this);
     return _this;
   }
 
   _createClass(Category, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.state.posts_data.cat_id = nextProps.params.id;
+      this.setState(this.state);
+      this.getCategory();
+    }
+  }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
+      this.getCategory();
+    }
+  }, {
+    key: 'getCategory',
+    value: function getCategory() {
       var _this2 = this;
 
       _jquery2.default.ajax({
@@ -58093,7 +58107,6 @@ var Category = function (_Component) {
         type: 'post',
         data: this.state.posts_data,
         success: function success(data) {
-          console.log(data);
           _this2.setState({ data: data });
         }
       });

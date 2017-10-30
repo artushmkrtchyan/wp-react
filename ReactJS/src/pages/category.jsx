@@ -17,20 +17,31 @@ export default class Category extends Component {
         },
         data: []
 			}
+
+      this.getCategory = this.getCategory.bind(this)
 		}
 
+  componentWillReceiveProps (nextProps) {
+    this.state.posts_data.cat_id = nextProps.params.id;
+    this.setState(this.state);
+    this.getCategory()
+  }
+
 	componentWillMount() {
-		$.ajax({
-			url: conf.wp_ajax_path + 'category.php',
-			dataType: 'json',
-			type: 'post',
-			data: this.state.posts_data,
-			success: data => {
-				console.log(data);
-				this.setState({data})
-			}
-		});
+    this.getCategory()
 	}
+
+  getCategory() {
+    $.ajax({
+      url: conf.wp_ajax_path + 'category.php',
+      dataType: 'json',
+      type: 'post',
+      data: this.state.posts_data,
+      success: data => {
+        this.setState({data})
+      }
+    });
+  }
 
   render() {
 		return (
