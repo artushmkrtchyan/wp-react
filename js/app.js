@@ -45318,6 +45318,10 @@ var _post = __webpack_require__(515);
 
 var _post2 = _interopRequireDefault(_post);
 
+var _category = __webpack_require__(517);
+
+var _category2 = _interopRequireDefault(_category);
+
 var _wppost = __webpack_require__(516);
 
 var _wppost2 = _interopRequireDefault(_wppost);
@@ -45331,6 +45335,7 @@ exports.default = _react2.default.createElement(
 	_react2.default.createElement(_reactRouter.Route, { path: '/asinkey/main', component: _main2.default }),
 	_react2.default.createElement(_reactRouter.Route, { path: '/asinkey/search', component: _search2.default }),
 	_react2.default.createElement(_reactRouter.Route, { path: '/asinkey/post/:id', component: _post2.default }),
+	_react2.default.createElement(_reactRouter.Route, { path: '/asinkey/category/:id', component: _category2.default }),
 	_react2.default.createElement(_reactRouter.Route, { path: '/asinkey/WpPost/:id', component: _wppost2.default })
 );
 
@@ -56665,6 +56670,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__(26);
 
+var _reactRouter = __webpack_require__(63);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56690,18 +56697,30 @@ var MainMenu = exports.MainMenu = function (_Component) {
         { bsStyle: 'tabs' },
         _react2.default.createElement(
           _reactBootstrap.NavItem,
-          { eventKey: '1', href: '/' },
+          { eventKey: '1', href: '/asinkey/' },
           'Main'
         ),
         _react2.default.createElement(
           _reactBootstrap.NavItem,
           { eventKey: '2', href: '#' },
-          'NavItem 2'
+          _react2.default.createElement(
+            'span',
+            { onClick: function onClick() {
+                _reactRouter.browserHistory.push('/asinkey/category/2');
+              } },
+            'Technology'
+          )
         ),
         _react2.default.createElement(
           _reactBootstrap.NavItem,
           { eventKey: '3', href: '#' },
-          'NavItem 3'
+          _react2.default.createElement(
+            'span',
+            { onClick: function onClick() {
+                _reactRouter.browserHistory.push('/asinkey/category/3');
+              } },
+            'Sport'
+          )
         ),
         _react2.default.createElement(
           _reactBootstrap.NavDropdown,
@@ -58003,6 +58022,159 @@ var WpPost = function (_Component) {
 }(_react.Component);
 
 exports.default = WpPost;
+
+/***/ }),
+/* 517 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBootstrap = __webpack_require__(26);
+
+var _header = __webpack_require__(148);
+
+var _footer = __webpack_require__(149);
+
+var _reactRouter = __webpack_require__(63);
+
+var _config = __webpack_require__(74);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _jquery = __webpack_require__(58);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Category = function (_Component) {
+  _inherits(Category, _Component);
+
+  function Category(props) {
+    _classCallCheck(this, Category);
+
+    var _this = _possibleConstructorReturn(this, (Category.__proto__ || Object.getPrototypeOf(Category)).call(this, props));
+
+    _this.state = {
+      posts_data: {
+        post_count: 5,
+        cat_id: _this.props.params.id
+      },
+      data: []
+    };
+    return _this;
+  }
+
+  _createClass(Category, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      _jquery2.default.ajax({
+        url: _config2.default.wp_ajax_path + 'category.php',
+        dataType: 'json',
+        type: 'post',
+        data: this.state.posts_data,
+        success: function success(data) {
+          console.log(data);
+          _this2.setState({ data: data });
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'main-container category-page' },
+        _react2.default.createElement(
+          'div',
+          { className: 'container header' },
+          _react2.default.createElement(_header.Header, null)
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'container post-content' },
+          _react2.default.createElement(
+            _reactBootstrap.Row,
+            null,
+            _react2.default.createElement(
+              _reactBootstrap.Col,
+              { xs: 9 },
+              this.state.data.map(function (post, key) {
+                return _react2.default.createElement(
+                  'div',
+                  { key: key, className: "cat-post-item post_" + post.id },
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: "/asinkey/post/" + post.id },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'post-title' },
+                      ' ',
+                      post.title,
+                      ' '
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'post-date' },
+                    ' ',
+                    post.create_date,
+                    ' '
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { to: "/asinkey/post/" + post.id },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'post-img' },
+                      _react2.default.createElement('img', { src: post.thumbnail, alt: '' })
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'post-excerpt' },
+                      ' ',
+                      post.content,
+                      ' '
+                    )
+                  )
+                );
+              })
+            ),
+            _react2.default.createElement(_reactBootstrap.Col, { xs: 3 })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'container-fluid footer' },
+          _react2.default.createElement(_footer.Footer, null)
+        )
+      );
+    }
+  }]);
+
+  return Category;
+}(_react.Component);
+
+exports.default = Category;
 
 /***/ })
 /******/ ]);
