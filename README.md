@@ -1,3 +1,5 @@
+# WP REACT
+
 # installation
 $ npm install
 
