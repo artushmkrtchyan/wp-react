@@ -4,6 +4,7 @@ import {Header} from './header.jsx';
 import {Footer} from './footer.jsx';
 import conf from '../../config';
 import $ from 'jquery';
+import YoutubePlayer from 'react-youtube-player';
 
 export default class Post extends Component {
   constructor(props) {
@@ -40,14 +41,29 @@ export default class Post extends Component {
 
           <div className="container post-content">
             <Row>
-                   <Col xs={9}>
+                  <Col xs={9}>
                         <div className={"post-item post_"+this.state.data.ID}>
                             <div className="post-title"> {this.state.data.post_title} </div>
 														<div className="post-date"> {this.state.data.post_date} </div>
-                            <div className="post-img"><img src={this.state.data.thumbnail} alt="" /></div>
+                            {this.state.data.youtube_id ?
+                              <div className="videoWrapper">
+                                <YoutubePlayer
+                                  videoId={this.state.data.youtube_id}
+                                  playbackState='unstarted'
+                                  configuration={
+                                      {
+                                          showinfo: 0,
+                                          controls: 1
+                                      }
+                                  }
+                                />
+                              </div>
+                               :
+                              <div className="post-img"><img src={this.state.data.thumbnail} alt="" /></div>
+                            }
                             <div className="post-excerpt"> {this.state.data.post_content} </div>
                         </div>
-                    </Col>
+                </Col>
                 <Col xs={3}>
                 </Col>
             </Row>
