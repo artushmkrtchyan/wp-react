@@ -6,6 +6,8 @@ Version:     0.0.1
 Author:      Artush Mkrtchyan
 */
 
+require 'function-metabox.php';
+
 function include_wp_react() {
   echo '<div id="root"></div>';
 }
