@@ -7,11 +7,11 @@ import Post from '../pages/post.jsx';
 import Category from '../pages/category.jsx';
 import WpPost from '../pages/wppost.jsx';
 
-export default (<Route path="/asinkey/">
-	<IndexRedirect to="/asinkey/main"/>
-	<Route path="/asinkey/main" component={Main} />
-	<Route path="/asinkey/search" component={Search} />
-	<Route path="/asinkey/post/:id" component={Post} />
-	<Route path="/asinkey/category/:id" component={Category} />
-	<Route path="/asinkey/WpPost/:id" component={WpPost} />
+export default (<Route path="/">
+	<IndexRedirect to="main"/>
+	<Route path="main" component={Main} />
+	<Route path="search" component={Search} />
+	<Route path="post/:id" component={Post} />
+	<Route path="category/:id" component={Category} />
+	<Route path="WpPost/:id" component={WpPost} />
 </Route>)

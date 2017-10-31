@@ -3,6 +3,7 @@ import {Col, Row } from 'react-bootstrap';
 import {Header} from './header.jsx';
 import {Footer} from './footer.jsx';
 import { Link } from 'react-router';
+import Pagination from 'react-js-pagination';
 import conf from '../../config';
 import $ from 'jquery';
 
@@ -13,12 +14,15 @@ export default class Category extends Component {
 			this.state = {
 				posts_data: {
           post_count: 5,
+          offset: 0,
 					cat_id: this.props.params.id
         },
+        activePage: 1,
         data: []
 			}
 
       this.getCategory = this.getCategory.bind(this)
+      this.handlePageChange = this.handlePageChange.bind(this)
 		}
 
   componentWillReceiveProps (nextProps) {
@@ -43,6 +47,14 @@ export default class Category extends Component {
     });
   }
 
+  handlePageChange(pageNumber) {
+    this.state.activePage = pageNumber;
+    this.state.posts_data.offset = pageNumber ? pageNumber -1 : 0;
+    this.setState(this.state);
+    this.getCategory();
+    console.log(`active page is ${this.state.activePage}`);
+  }
+
   render() {
 		return (
 
@@ -54,20 +66,29 @@ export default class Category extends Component {
           <div className="container post-content">
             <Row>
                    <Col xs={9}>
+                     <div>
                      {
          					   this.state.data.map( (post, key) => (
                       <div key={key} className={"cat-post-item post_"+post.id}>
-                        <Link to={"/asinkey/post/"+post.id}>
+                        <Link to={"post/"+post.id}>
                           <div className="post-title"> {post.title} </div>
                         </Link>
                           <div className="post-date"> {post.create_date} </div>
-                        <Link to={"/asinkey/post/"+post.id}>
+                        <Link to={"post/"+post.id}>
                           <div className="post-img"><img src={post.thumbnail} alt="" /></div>
 													<div className="post-excerpt"> {post.content} </div>
                         </Link>
                       </div>
                       ))
                     }
+                    <Pagination
+                      hideDisabled
+                      activePage={this.state.activePage}
+                      itemsCountPerPage={10}
+                      totalItemsCount={400}
+                      onChange={this.handlePageChange}
+                    />
+                  </div>
                     </Col>
                 <Col xs={3}>
                 </Col>

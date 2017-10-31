@@ -40,7 +40,7 @@ export default class Sport extends Component {
   					   this.state.data.map( (post, key) => (
                  <Col key={key}  xs={3}>
       								<div id={"post_"+post.id} className="post-item">
-												<Link to={"/asinkey/post/"+post.id}>
+												<Link to={"post/"+post.id}>
         									<div className="post-title"> {post.title} </div>
         									<div className="post-img"><img src={post.thumbnail} alt="" /></div>
                           <div className="post-excerpt"> {post.content} </div>

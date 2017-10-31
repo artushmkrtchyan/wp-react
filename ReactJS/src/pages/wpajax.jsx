@@ -45,7 +45,7 @@ export default class Wpajax extends Component {
                this.state.data.map( (post, key) => (
                  <Col key={key}  xs={3}>
                       <div id={"post_"+post.id} className="post-item">
-                        <Link to={"/asinkey/wppost/"+post.id}>
+                        <Link to={"wppost/"+post.id}>
                           <div className="post-title"><span dangerouslySetInnerHTML={{__html: post.title.rendered}}></span></div>
                           <div className="post-img"><img src={post.media} alt="" /></div>
                           <div className="post-excerpt"><span dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}></span> </div>

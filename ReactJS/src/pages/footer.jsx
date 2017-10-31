@@ -10,7 +10,7 @@ export class Footer extends Component {
           <Row>
             <Col  xs={6}>
               <div className="footer-logo">
-                <a href="/asinkey/">
+                <a href="/asinkey/#/">
                   <img src="/img/logo.jpg" alt="logo" title="footer-logo" />
                 </a>
               </div>

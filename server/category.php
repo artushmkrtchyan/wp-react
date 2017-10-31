@@ -3,7 +3,7 @@ require_once("../../../../wp-load.php");
 if($_POST['post_count'] && $_POST['post_count'] != '' && $_POST['cat_id']){
 		$args = array(
 		    'posts_per_page' => $_POST['post_count'],
-		    'offset' => 0,
+		    'offset' => $_POST['offset'] * $_POST['post_count'],
 		    'category' => $_POST['cat_id'],
 		    'orderby' => 'date',
 		    'order' => 'DESC',

@@ -12,7 +12,7 @@ export class Header extends Component {
           <Row>
             <Col  xs={9}>
               <div className="logo">
-                <a href="/asinkey/">
+                <a href="/asinkey/#/">
                   <img src="/img/logo.jpg" alt="logo" title="logo" />
                 </a>
               </div>
