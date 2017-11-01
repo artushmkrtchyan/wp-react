@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import {hashHistory} from 'react-router';
+import conf from '../../config';
 
 export class MainMenu extends Component {
   render() {
     return (
       <Nav bsStyle="tabs">
-        <NavItem eventKey="1" href="/asinkey/#/">Main</NavItem>
+        <NavItem eventKey="1" href={conf.home_url}>Main</NavItem>
         <NavItem eventKey="2" href="#"><span onClick={() => { hashHistory.push('category/2') }}>Technology</span></NavItem>
         <NavItem eventKey="3" href="#"><span onClick={() => { hashHistory.push('category/3') }}>Sport</span></NavItem>
         <NavDropdown eventKey="4" href="#" title="Dropdown" id="nav-dropdown">

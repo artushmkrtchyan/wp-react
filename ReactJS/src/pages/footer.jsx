@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Col, Row } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import conf from '../../config';
 
 export class Footer extends Component {
   render() {
@@ -10,8 +11,8 @@ export class Footer extends Component {
           <Row>
             <Col  xs={6}>
               <div className="footer-logo">
-                <a href="/asinkey/#/">
-                  <img src="/img/logo.jpg" alt="logo" title="footer-logo" />
+                <a href={conf.home_url}>
+                  <img src={conf.wp_img_path+"img/logo.jpg"} alt="logo" title="footer-logo" />
                 </a>
               </div>
             </Col>

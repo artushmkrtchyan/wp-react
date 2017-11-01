@@ -3,6 +3,7 @@ import {Col, Row } from 'react-bootstrap';
 import {MainMenu} from '../navbar/nav.js';
 import {TopMenu} from '../navbar/topNav.js';
 import {Account} from '../navbar/Account.jsx';
+import conf from '../../config';
 
 export class Header extends Component {
   render() {
@@ -12,8 +13,8 @@ export class Header extends Component {
           <Row>
             <Col  xs={9}>
               <div className="logo">
-                <a href="/asinkey/#/">
-                  <img src="/img/logo.jpg" alt="logo" title="logo" />
+                <a href={conf.home_url}>
+                  <img src={conf.wp_img_path+"img/logo.jpg"} alt="logo" title="logo" />
                 </a>
               </div>
             </Col>

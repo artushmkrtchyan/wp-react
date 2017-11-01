@@ -86,15 +86,17 @@ export default class Category extends Component {
                         ''
                       ))
                     }
-                    <div className="page-nav">
-                      <Pagination className="sfhgjkdfgjkdfb"
-                        hideDisabled
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={itemsCountPerPage}
-                        totalItemsCount={totalItemsCount}
-                        onChange={this.handlePageChange}
-                      />
-                    </div>
+                    {  totalItemsCount > itemsCountPerPage ?
+                      <div className="page-nav">
+                        <Pagination className="sfhgjkdfgjkdfb"
+                          hideDisabled
+                          activePage={this.state.activePage}
+                          itemsCountPerPage={itemsCountPerPage}
+                          totalItemsCount={totalItemsCount}
+                          onChange={this.handlePageChange}
+                        />
+                      </div> : ''
+                    }
                   </div>
                     </Col>
                 <Col xs={3}>

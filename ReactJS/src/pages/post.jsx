@@ -61,7 +61,7 @@ export default class Post extends Component {
                                :
                               <div className="post-img"><img src={this.state.data.thumbnail} alt="" /></div>
                             }
-                            <div className="post-excerpt"> {this.state.data.post_content} </div>
+                            <div className="post-content"> {this.state.data.post_content} </div>
                         </div>
                 </Col>
                 <Col xs={3}>

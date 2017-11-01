@@ -4260,7 +4260,7 @@ module.exports = function (it) {
 /* 46 */
 /***/ (function(module, exports) {
 
-module.exports = {"home_url":"https://funzone.news/wp-json/wp/v2","wp_api_url":"https://funzone.news/wp-json/wp/v2","wp_ajax_path":"/asinkey/wp-content/plugins/wp-react/server/"}
+module.exports = {"home_url":"/asinkey/#/","wp_api_url":"https://funzone.news/wp-json/wp/v2","wp_ajax_path":"/asinkey/wp-content/plugins/wp-react/server/","wp_img_path":"/asinkey/wp-content/plugins/wp-react/"}
 
 /***/ }),
 /* 47 */
@@ -18358,6 +18358,10 @@ var _topNav = __webpack_require__(505);
 
 var _Account = __webpack_require__(507);
 
+var _config = __webpack_require__(46);
+
+var _config2 = _interopRequireDefault(_config);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18395,8 +18399,8 @@ var Header = exports.Header = function (_Component) {
                 { className: 'logo' },
                 _react2.default.createElement(
                   'a',
-                  { href: '/asinkey/#/' },
-                  _react2.default.createElement('img', { src: '/img/logo.jpg', alt: 'logo', title: 'logo' })
+                  { href: _config2.default.home_url },
+                  _react2.default.createElement('img', { src: _config2.default.wp_img_path + "img/logo.jpg", alt: 'logo', title: 'logo' })
                 )
               )
             ),
@@ -18440,6 +18444,10 @@ var _reactFontawesome = __webpack_require__(238);
 
 var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
 
+var _config = __webpack_require__(46);
+
+var _config2 = _interopRequireDefault(_config);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18477,8 +18485,8 @@ var Footer = exports.Footer = function (_Component) {
                                 { className: 'footer-logo' },
                                 _react2.default.createElement(
                                     'a',
-                                    { href: '/asinkey/#/' },
-                                    _react2.default.createElement('img', { src: '/img/logo.jpg', alt: 'logo', title: 'footer-logo' })
+                                    { href: _config2.default.home_url },
+                                    _react2.default.createElement('img', { src: _config2.default.wp_img_path + "img/logo.jpg", alt: 'logo', title: 'footer-logo' })
                                 )
                             )
                         ),
@@ -56670,6 +56678,10 @@ var _reactBootstrap = __webpack_require__(26);
 
 var _reactRouter = __webpack_require__(42);
 
+var _config = __webpack_require__(46);
+
+var _config2 = _interopRequireDefault(_config);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56695,7 +56707,7 @@ var MainMenu = exports.MainMenu = function (_Component) {
         { bsStyle: 'tabs' },
         _react2.default.createElement(
           _reactBootstrap.NavItem,
-          { eventKey: '1', href: '/asinkey/#/' },
+          { eventKey: '1', href: _config2.default.home_url },
           'Main'
         ),
         _react2.default.createElement(
@@ -57855,7 +57867,7 @@ var Post = function (_Component) {
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'post-excerpt' },
+                  { className: 'post-content' },
                   ' ',
                   this.state.data.post_content,
                   ' '
@@ -58049,7 +58061,7 @@ var Category = function (_Component) {
                     )
                   ) : '';
                 }),
-                _react2.default.createElement(
+                totalItemsCount > itemsCountPerPage ? _react2.default.createElement(
                   'div',
                   { className: 'page-nav' },
                   _react2.default.createElement(_reactJsPagination2.default, { className: 'sfhgjkdfgjkdfb',
@@ -58059,7 +58071,7 @@ var Category = function (_Component) {
                     totalItemsCount: totalItemsCount,
                     onChange: this.handlePageChange
                   })
-                )
+                ) : ''
               )
             ),
             _react2.default.createElement(_reactBootstrap.Col, { xs: 3 })
