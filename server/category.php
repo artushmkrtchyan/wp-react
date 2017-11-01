@@ -1,6 +1,9 @@
 <?php
 require_once("../../../../wp-load.php");
 if($_POST['post_count'] && $_POST['post_count'] != '' && $_POST['cat_id']){
+		$category = get_category($_POST['cat_id']);
+		$category_post_count = $category->category_count;
+
 		$args = array(
 		    'posts_per_page' => $_POST['post_count'],
 		    'offset' => $_POST['offset'] * $_POST['post_count'],
@@ -23,6 +26,7 @@ if($_POST['post_count'] && $_POST['post_count'] != '' && $_POST['cat_id']){
         	$arr['create_date'] = get_the_date('d.m.Y | h:i', $post_item->ID);
         	array_push($result, $arr);
         }
+				array_push($result, $category_post_count);
         echo json_encode($result);
     }
 }

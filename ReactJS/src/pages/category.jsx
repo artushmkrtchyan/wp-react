@@ -27,6 +27,8 @@ export default class Category extends Component {
 
   componentWillReceiveProps (nextProps) {
     this.state.posts_data.cat_id = nextProps.params.id;
+    this.state.activePage = 1;
+    this.state.posts_data.offset = 0;
     this.setState(this.state);
     this.getCategory()
   }
@@ -49,13 +51,14 @@ export default class Category extends Component {
 
   handlePageChange(pageNumber) {
     this.state.activePage = pageNumber;
-    this.state.posts_data.offset = pageNumber ? pageNumber -1 : 0;
+    this.state.posts_data.offset = pageNumber ? pageNumber - 1 : 0;
     this.setState(this.state);
     this.getCategory();
-    console.log(`active page is ${this.state.activePage}`);
   }
 
   render() {
+    let itemsCountPerPage = this.state.posts_data.post_count ? this.state.posts_data.post_count : 10;
+    let totalItemsCount = this.state.data[this.state.data.length - 1];
 		return (
 
         <div className="main-container category-page">
@@ -69,25 +72,29 @@ export default class Category extends Component {
                      <div>
                      {
          					   this.state.data.map( (post, key) => (
-                      <div key={key} className={"cat-post-item post_"+post.id}>
-                        <Link to={"post/"+post.id}>
-                          <div className="post-title"> {post.title} </div>
-                        </Link>
-                          <div className="post-date"> {post.create_date} </div>
-                        <Link to={"post/"+post.id}>
-                          <div className="post-img"><img src={post.thumbnail} alt="" /></div>
-													<div className="post-excerpt"> {post.content} </div>
-                        </Link>
-                      </div>
+                       post.id ?
+                        <div key={key} className={"cat-post-item post_"+post.id}>
+                          <Link to={"post/"+post.id}>
+                            <div className="post-title"> {post.title} </div>
+                          </Link>
+                            <div className="post-date"> {post.create_date} </div>
+                          <Link to={"post/"+post.id}>
+                            <div className="post-img"><img src={post.thumbnail} alt="" /></div>
+  													<div className="post-excerpt"> {post.content} </div>
+                          </Link>
+                        </div> :
+                        ''
                       ))
                     }
-                    <Pagination
-                      hideDisabled
-                      activePage={this.state.activePage}
-                      itemsCountPerPage={10}
-                      totalItemsCount={400}
-                      onChange={this.handlePageChange}
-                    />
+                    <div className="page-nav">
+                      <Pagination className="sfhgjkdfgjkdfb"
+                        hideDisabled
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={itemsCountPerPage}
+                        totalItemsCount={totalItemsCount}
+                        onChange={this.handlePageChange}
+                      />
+                    </div>
                   </div>
                     </Col>
                 <Col xs={3}>

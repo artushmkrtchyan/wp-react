@@ -57951,6 +57951,8 @@ var Category = function (_Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.state.posts_data.cat_id = nextProps.params.id;
+      this.state.activePage = 1;
+      this.state.posts_data.offset = 0;
       this.setState(this.state);
       this.getCategory();
     }
@@ -57981,11 +57983,12 @@ var Category = function (_Component) {
       this.state.posts_data.offset = pageNumber ? pageNumber - 1 : 0;
       this.setState(this.state);
       this.getCategory();
-      console.log('active page is ' + this.state.activePage);
     }
   }, {
     key: 'render',
     value: function render() {
+      var itemsCountPerPage = this.state.posts_data.post_count ? this.state.posts_data.post_count : 10;
+      var totalItemsCount = this.state.data[this.state.data.length - 1];
       return _react2.default.createElement(
         'div',
         { className: 'main-container category-page' },
@@ -58007,7 +58010,7 @@ var Category = function (_Component) {
                 'div',
                 null,
                 this.state.data.map(function (post, key) {
-                  return _react2.default.createElement(
+                  return post.id ? _react2.default.createElement(
                     'div',
                     { key: key, className: "cat-post-item post_" + post.id },
                     _react2.default.createElement(
@@ -58044,15 +58047,19 @@ var Category = function (_Component) {
                         ' '
                       )
                     )
-                  );
+                  ) : '';
                 }),
-                _react2.default.createElement(_reactJsPagination2.default, {
-                  hideDisabled: true,
-                  activePage: this.state.activePage,
-                  itemsCountPerPage: 10,
-                  totalItemsCount: 400,
-                  onChange: this.handlePageChange
-                })
+                _react2.default.createElement(
+                  'div',
+                  { className: 'page-nav' },
+                  _react2.default.createElement(_reactJsPagination2.default, { className: 'sfhgjkdfgjkdfb',
+                    hideDisabled: true,
+                    activePage: this.state.activePage,
+                    itemsCountPerPage: itemsCountPerPage,
+                    totalItemsCount: totalItemsCount,
+                    onChange: this.handlePageChange
+                  })
+                )
               )
             ),
             _react2.default.createElement(_reactBootstrap.Col, { xs: 3 })
