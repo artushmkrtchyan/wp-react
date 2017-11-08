@@ -44,7 +44,10 @@ export default class Post extends Component {
                   <Col xs={9}>
                         <div className={"post-item post_"+this.state.data.ID}>
                             <div className="post-title"> {this.state.data.post_title} </div>
-														<div className="post-date"> {this.state.data.post_date} </div>
+                            <div className="post-meta">
+                              <span className="post-view"> Views:  {this.state.data.PostView} </span>
+  														<span className="post-date"> {this.state.data.post_date} </span>
+                            </div>
                             {this.state.data.youtube_id ?
                               <div className="videoWrapper">
                                 <YoutubePlayer

@@ -23,7 +23,7 @@ if($_POST['SignUp'] && $_POST['SignUp'] == 'signUp'){
 		$userdata = array(
 			'user_login' => $_POST['SignUpLogin'],
 			'user_pass'  => $_POST['SignUpPassword'],
-			'user_email' => $_POST['email'],
+			'user_email' => $_POST['Email'],
 			'first_name' => $_POST['FirstName'],
 			'last_name'   => $_POST['LastName'],
 		);
