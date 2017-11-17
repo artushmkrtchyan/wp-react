@@ -340,3 +340,37 @@ li {
 .post-meta {
   margin-bottom: 15px;
 }
+
+.most-read-title {
+  font-size: 20px;
+  line-height: 20px;
+  color: #0a0a0a;
+  font-weight: 700!important;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.post-block-list {
+    padding: 0;
+}
+
+.post-block-list .item {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.categories-widget .post-block-list li {
+    list-style-type: none;
+}
+
+.most-read-post-title {
+    padding: 5px 0;
+    text-align: center;
+    max-height: 67px;
+    overflow: hidden;
+}
+
+.most-read-post-img img {
+  width: 100%;
+  height: auto;
+}

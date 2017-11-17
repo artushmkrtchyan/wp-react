@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Col, Row } from 'react-bootstrap';
 import {Header} from './header.jsx';
 import {Footer} from './footer.jsx';
+import MostRead from '../components/mostRead.jsx';
 import conf from '../../config';
 import $ from 'jquery';
 import YoutubePlayer from 'react-youtube-player';
@@ -41,7 +42,7 @@ export default class Post extends Component {
 
           <div className="container post-content">
             <Row>
-                  <Col xs={9}>
+                  <Col xs={8}>
                         <div className={"post-item post_"+this.state.data.ID}>
                             <div className="post-title"> {this.state.data.post_title} </div>
                             <div className="post-meta">
@@ -67,7 +68,8 @@ export default class Post extends Component {
                             <div className="post-content"> {this.state.data.post_content} </div>
                         </div>
                 </Col>
-                <Col xs={3}>
+                <Col xs={4}>
+                  <MostRead></MostRead>
                 </Col>
             </Row>
           </div>

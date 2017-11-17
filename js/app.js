@@ -57773,6 +57773,10 @@ var _header = __webpack_require__(95);
 
 var _footer = __webpack_require__(96);
 
+var _mostRead = __webpack_require__(536);
+
+var _mostRead2 = _interopRequireDefault(_mostRead);
+
 var _config = __webpack_require__(32);
 
 var _config2 = _interopRequireDefault(_config);
@@ -57846,7 +57850,7 @@ var Post = function (_Component) {
             null,
             _react2.default.createElement(
               _reactBootstrap.Col,
-              { xs: 9 },
+              { xs: 8 },
               _react2.default.createElement(
                 'div',
                 { className: "post-item post_" + this.state.data.ID },
@@ -57900,7 +57904,11 @@ var Post = function (_Component) {
                 )
               )
             ),
-            _react2.default.createElement(_reactBootstrap.Col, { xs: 3 })
+            _react2.default.createElement(
+              _reactBootstrap.Col,
+              { xs: 4 },
+              _react2.default.createElement(_mostRead2.default, null)
+            )
           )
         ),
         _react2.default.createElement(
@@ -61543,6 +61551,122 @@ var WpPost = function (_Component) {
 }(_react.Component);
 
 exports.default = WpPost;
+
+/***/ }),
+/* 536 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBootstrap = __webpack_require__(26);
+
+var _reactRouter = __webpack_require__(43);
+
+var _config = __webpack_require__(32);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _jquery = __webpack_require__(47);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MostRead = function (_Component) {
+  _inherits(MostRead, _Component);
+
+  function MostRead(props) {
+    _classCallCheck(this, MostRead);
+
+    var _this = _possibleConstructorReturn(this, (MostRead.__proto__ || Object.getPrototypeOf(MostRead)).call(this, props));
+
+    _this.state = {
+      post_data: {
+        post_count: 5
+      },
+      data: []
+    };
+    return _this;
+  }
+
+  _createClass(MostRead, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      _jquery2.default.ajax({
+        url: _config2.default.wp_ajax_path + 'mostread.php',
+        dataType: 'json',
+        type: 'post',
+        data: this.state.post_data,
+        success: function success(data) {
+          console.log(data);
+          _this2.setState({ data: data });
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'most-read-section' },
+        _react2.default.createElement(
+          'div',
+          { className: 'most-read-title' },
+          'Most Read'
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'post-block-list' },
+          this.state.data.map(function (post, key) {
+            return _react2.default.createElement(
+              'li',
+              { key: key, id: "post_" + post.id, className: 'post-item item clearfix' },
+              _react2.default.createElement(
+                _reactRouter.Link,
+                { to: "post/" + post.id },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'most-read-post-img' },
+                  _react2.default.createElement('img', { src: post.thumbnail, alt: '' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'most-read-post-title' },
+                  ' ',
+                  post.title,
+                  ' '
+                )
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return MostRead;
+}(_react.Component);
+
+exports.default = MostRead;
 
 /***/ })
 /******/ ]);
