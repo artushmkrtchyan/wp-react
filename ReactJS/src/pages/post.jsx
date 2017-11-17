@@ -17,20 +17,38 @@ export default class Post extends Component {
 				},
 				data: []
 			}
-  }
 
-	componentWillMount() {
-		$.ajax({
-			url: conf.wp_ajax_path + 'post.php',
-			dataType: 'json',
-			type: 'post',
-			data: this.state.post_data,
-			success: data => {
-				console.log(data);
-				this.setState({data})
-			}
-		});
-	}
+  this.getPost = this.getPost.bind(this)
+  this.handlePageChange = this.handlePageChange.bind(this)
+}
+
+componentWillReceiveProps (nextProps) {
+this.state.post_data.post_id = nextProps.params.id;
+this.setState(this.state);
+this.getPost()
+}
+
+componentWillMount() {
+this.getPost()
+}
+
+getPost() {
+$.ajax({
+  url: conf.wp_ajax_path + 'post.php',
+  dataType: 'json',
+  type: 'post',
+  data: this.state.post_data,
+  success: data => {
+    this.setState({data})
+  }
+});
+}
+
+handlePageChange() {
+this.setState(this.state);
+this.getPost();
+}
+
 
   render() {
 		return (
