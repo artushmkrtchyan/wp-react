@@ -12,7 +12,7 @@ export default class Sport extends Component {
 			this.state = {
 				post_data: {
           post_count: 4,
-					cat_id: 3
+					cat_id: 2
         },
         data: []
 			}
@@ -41,9 +41,9 @@ export default class Sport extends Component {
                  <Col key={key}  xs={3}>
       								<div id={"post_"+post.id} className="post-item">
 												<Link to={"post/"+post.id}>
-        									<div className="post-title"> {post.title} </div>
+        									<div className="post-title"><span dangerouslySetInnerHTML={{__html: post.title}}></span> </div>
         									<div className="post-img"><img src={post.thumbnail} alt="" /></div>
-                          <div className="post-excerpt"> {post.content} </div>
+                          <div className="post-excerpt"><span dangerouslySetInnerHTML={{__html: post.content}}></span> </div>
                         </Link>
       								</div>
                   </Col>

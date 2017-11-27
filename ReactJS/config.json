@@ -1,6 +1,6 @@
 {
-  "home_url": "/asinkey/#/",
+  "home_url": "/wpreact/#/",
   "wp_api_url": "https://funzone.news/wp-json/wp/v2",
-  "wp_ajax_path": "/asinkey/wp-content/plugins/wp-react/server/",
-  "wp_img_path": "/asinkey/wp-content/plugins/wp-react/"
+  "wp_ajax_path": "/wpreact/wp-content/plugins/wp-react/server/",
+  "wp_img_path": "/wpreact/wp-content/plugins/wp-react/"
 }

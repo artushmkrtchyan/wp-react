@@ -8,8 +8,8 @@ export class MainMenu extends Component {
     return (
       <Nav bsStyle="tabs">
         <NavItem eventKey="1" href={conf.home_url}>Main</NavItem>
-        <NavItem eventKey="2" href="#"><span onClick={() => { hashHistory.push('category/2') }}>Technology</span></NavItem>
-        <NavItem eventKey="3" href="#"><span onClick={() => { hashHistory.push('category/3') }}>Sport</span></NavItem>
+        <NavItem eventKey="2" href="#"><span onClick={() => { hashHistory.push('category/22') }}>All News</span></NavItem>
+        <NavItem eventKey="3" href="#"><span onClick={() => { hashHistory.push('category/2') }}>Sport</span></NavItem>
         <NavDropdown eventKey="4" href="#" title="Dropdown" id="nav-dropdown">
           <MenuItem eventKey="4.1" href="#">Action</MenuItem>
           <MenuItem eventKey="4.2" href="#">Another action</MenuItem>

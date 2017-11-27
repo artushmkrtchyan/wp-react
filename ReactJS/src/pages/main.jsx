@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button, Col, Row, Modal } from 'react-bootstrap';
 import {Header} from './header.jsx';
 import {Footer} from './footer.jsx';
-import {Technology} from './technology.jsx';
+import {AllNews} from './allnews.jsx';
 import Sport from './sport.jsx';
 import Wpajax from './wpajax.jsx';
 
@@ -49,7 +49,7 @@ export default class Main extends Component {
                 </div>
 
                 <div className="container content">
-                  <Technology></Technology>
+                  <AllNews></AllNews>
                   <Sport></Sport>
                   <Wpajax></Wpajax>
                 </div>

@@ -75,12 +75,12 @@ export default class Category extends Component {
                        post.id ?
                         <div key={key} className={"cat-post-item post_"+post.id}>
                           <Link to={"post/"+post.id}>
-                            <div className="post-title"> {post.title} </div>
+                            <div className="post-title"><span dangerouslySetInnerHTML={{__html: post.title}}></span> </div>
                           </Link>
                             <div className="post-date"> {post.create_date} </div>
                           <Link to={"post/"+post.id}>
                             <div className="post-img"><img src={post.thumbnail} alt="" /></div>
-  													<div className="post-excerpt"> {post.content} </div>
+  													<div className="post-excerpt"><span dangerouslySetInnerHTML={{__html: post.content}}></span> </div>
                           </Link>
                         </div> :
                         ''

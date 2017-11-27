@@ -83,7 +83,7 @@ this.getPost();
                                :
                               <div className="post-img"><img src={this.state.data.thumbnail} alt="" /></div>
                             }
-                            <div className="post-content"> {this.state.data.post_content} </div>
+                            <div className="post-content"><span dangerouslySetInnerHTML={{__html: this.state.data.post_content}}></span> </div>
                         </div>
                 </Col>
                 <Col xs={4}>
