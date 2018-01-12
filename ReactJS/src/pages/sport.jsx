@@ -19,16 +19,27 @@ export default class Sport extends Component {
 		}
 
 	componentWillMount() {
-		$.ajax({
-			url: conf.wp_ajax_path + 'posts.php',
-			dataType: 'json',
-			type: 'post',
-			data: this.state.post_data,
-			success: data => {
-				console.log(data);
-				this.setState({data})
-			}
-		});
+		// $.ajax({
+		// 	url: conf.wp_ajax_path + 'posts.php',
+		// 	dataType: 'json',
+		// 	type: 'post',
+		// 	data: JSON.stringify(this.state.post_data),
+		// 	success: data => {
+		// 		console.log(data);
+		// 		this.setState({data})
+		// 	}
+		// });
+
+		fetch(conf.wp_ajax_path + 'posts.php', {
+			 method: 'POST',
+			 headers: {
+				 'Content-Type': 'application/x-www-form-urlencoded'
+			 },
+			 body: JSON.stringify(this.state.post_data)
+	 	})
+		 .then( res => res.json() )
+		 .then( data => this.setState({data}) );
+
 	}
 
   render() {

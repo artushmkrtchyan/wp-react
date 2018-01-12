@@ -23,7 +23,7 @@ export class AllNews extends Component {
 			url: conf.wp_ajax_path + 'posts.php',
 			dataType: 'json',
 			type: 'post',
-			data: this.state.post_data,
+			data: JSON.stringify(this.state.post_data),
 			success: data => {
 				console.log(data);
 				this.setState({data})

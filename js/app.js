@@ -45519,7 +45519,7 @@ var _header = __webpack_require__(95);
 
 var _footer = __webpack_require__(96);
 
-var _allnews = __webpack_require__(537);
+var _allnews = __webpack_require__(510);
 
 var _sport = __webpack_require__(511);
 
@@ -57289,8 +57289,7 @@ var SignIn = exports.SignIn = function (_Component2) {
 }(_react.Component);
 
 /***/ }),
-/* 510 */,
-/* 511 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57299,6 +57298,7 @@ var SignIn = exports.SignIn = function (_Component2) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.AllNews = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -57326,25 +57326,25 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Sport = function (_Component) {
-  _inherits(Sport, _Component);
+var AllNews = exports.AllNews = function (_Component) {
+  _inherits(AllNews, _Component);
 
-  function Sport(props) {
-    _classCallCheck(this, Sport);
+  function AllNews(props) {
+    _classCallCheck(this, AllNews);
 
-    var _this = _possibleConstructorReturn(this, (Sport.__proto__ || Object.getPrototypeOf(Sport)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (AllNews.__proto__ || Object.getPrototypeOf(AllNews)).call(this, props));
 
     _this.state = {
       post_data: {
         post_count: 4,
-        cat_id: 2
+        cat_id: 22
       },
       data: []
     };
     return _this;
   }
 
-  _createClass(Sport, [{
+  _createClass(AllNews, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
       var _this2 = this;
@@ -57353,7 +57353,7 @@ var Sport = function (_Component) {
         url: _config2.default.wp_ajax_path + 'posts.php',
         dataType: 'json',
         type: 'post',
-        data: this.state.post_data,
+        data: JSON.stringify(this.state.post_data),
         success: function success(data) {
           console.log(data);
           _this2.setState({ data: data });
@@ -57405,7 +57405,138 @@ var Sport = function (_Component) {
     }
   }]);
 
-  return Sport;
+  return AllNews;
+}(_react.Component);
+
+/***/ }),
+/* 511 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+		value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBootstrap = __webpack_require__(25);
+
+var _reactRouter = __webpack_require__(36);
+
+var _config = __webpack_require__(27);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _jquery = __webpack_require__(42);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Sport = function (_Component) {
+		_inherits(Sport, _Component);
+
+		function Sport(props) {
+				_classCallCheck(this, Sport);
+
+				var _this = _possibleConstructorReturn(this, (Sport.__proto__ || Object.getPrototypeOf(Sport)).call(this, props));
+
+				_this.state = {
+						post_data: {
+								post_count: 4,
+								cat_id: 2
+						},
+						data: []
+				};
+				return _this;
+		}
+
+		_createClass(Sport, [{
+				key: 'componentWillMount',
+				value: function componentWillMount() {
+						var _this2 = this;
+
+						// $.ajax({
+						// 	url: conf.wp_ajax_path + 'posts.php',
+						// 	dataType: 'json',
+						// 	type: 'post',
+						// 	data: JSON.stringify(this.state.post_data),
+						// 	success: data => {
+						// 		console.log(data);
+						// 		this.setState({data})
+						// 	}
+						// });
+
+						fetch(_config2.default.wp_ajax_path + 'posts.php', {
+								method: 'POST',
+								headers: {
+										'Content-Type': 'application/x-www-form-urlencoded'
+								},
+								body: JSON.stringify(this.state.post_data)
+						}).then(function (res) {
+								return res.json();
+						}).then(function (data) {
+								return _this2.setState({ data: data });
+						});
+				}
+		}, {
+				key: 'render',
+				value: function render() {
+						return _react2.default.createElement(
+								'div',
+								{ className: 'post-section' },
+								_react2.default.createElement(
+										_reactBootstrap.Row,
+										null,
+										this.state.data.map(function (post, key) {
+												return _react2.default.createElement(
+														_reactBootstrap.Col,
+														{ key: key, xs: 3 },
+														_react2.default.createElement(
+																'div',
+																{ id: "post_" + post.id, className: 'post-item' },
+																_react2.default.createElement(
+																		_reactRouter.Link,
+																		{ to: "post/" + post.id },
+																		_react2.default.createElement(
+																				'div',
+																				{ className: 'post-title' },
+																				_react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: post.title } }),
+																				' '
+																		),
+																		_react2.default.createElement(
+																				'div',
+																				{ className: 'post-img' },
+																				_react2.default.createElement('img', { src: post.thumbnail, alt: '' })
+																		),
+																		_react2.default.createElement(
+																				'div',
+																				{ className: 'post-excerpt' },
+																				_react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: post.content } }),
+																				' '
+																		)
+																)
+														)
+												);
+										})
+								)
+						);
+				}
+		}]);
+
+		return Sport;
 }(_react.Component);
 
 exports.default = Sport;
@@ -61561,126 +61692,6 @@ var WpPost = function (_Component) {
 }(_react.Component);
 
 exports.default = WpPost;
-
-/***/ }),
-/* 537 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.AllNews = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactBootstrap = __webpack_require__(25);
-
-var _reactRouter = __webpack_require__(36);
-
-var _config = __webpack_require__(27);
-
-var _config2 = _interopRequireDefault(_config);
-
-var _jquery = __webpack_require__(42);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AllNews = exports.AllNews = function (_Component) {
-  _inherits(AllNews, _Component);
-
-  function AllNews(props) {
-    _classCallCheck(this, AllNews);
-
-    var _this = _possibleConstructorReturn(this, (AllNews.__proto__ || Object.getPrototypeOf(AllNews)).call(this, props));
-
-    _this.state = {
-      post_data: {
-        post_count: 4,
-        cat_id: 22
-      },
-      data: []
-    };
-    return _this;
-  }
-
-  _createClass(AllNews, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var _this2 = this;
-
-      _jquery2.default.ajax({
-        url: _config2.default.wp_ajax_path + 'posts.php',
-        dataType: 'json',
-        type: 'post',
-        data: this.state.post_data,
-        success: function success(data) {
-          console.log(data);
-          _this2.setState({ data: data });
-        }
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'post-section' },
-        _react2.default.createElement(
-          _reactBootstrap.Row,
-          null,
-          this.state.data.map(function (post, key) {
-            return _react2.default.createElement(
-              _reactBootstrap.Col,
-              { key: key, xs: 3 },
-              _react2.default.createElement(
-                'div',
-                { id: "post_" + post.id, className: 'post-item' },
-                _react2.default.createElement(
-                  _reactRouter.Link,
-                  { to: "post/" + post.id },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'post-title' },
-                    _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: post.title } }),
-                    ' '
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'post-img' },
-                    _react2.default.createElement('img', { src: post.thumbnail, alt: '' })
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'post-excerpt' },
-                    _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: post.content } }),
-                    ' '
-                  )
-                )
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return AllNews;
-}(_react.Component);
 
 /***/ })
 /******/ ]);

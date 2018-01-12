@@ -1,10 +1,15 @@
 <?php
 require_once("../../../../wp-load.php");
-if($_POST['post_count'] && $_POST['post_count'] != '' && $_POST['cat_id']){
+
+$data = file_get_contents('php://input');
+
+$post = json_decode($data, true);
+
+if($post['post_count'] && $post['post_count'] != '' && $post['cat_id']){
 		$args = array(
-		    'posts_per_page' => $_POST['post_count'],
+		    'posts_per_page' => $post['post_count'],
 		    'offset' => 0,
-		    'category' => $_POST['cat_id'],
+		    'category' => $post['cat_id'],
 		    'orderby' => 'date',
 		    'order' => 'DESC',
 		    'post_type' => 'post',
